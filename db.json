@@ -1,0 +1,29 @@
+{
+    "courses" : [
+        {
+            "id":1,
+            "title": "Gosho",
+            "description": "This is gosho."
+        },
+        {
+            "id":2,
+            "title": "Gosho",
+            "description": "This is gosho."
+        },
+        {
+            "id":2,
+            "title": "Gosho",
+            "description": "This is gosho."
+        },
+        {
+            "id":3,
+            "title": "Gosho",
+            "description": "This is gosho."
+        },
+        {
+            "id":4,
+            "title": "Gosho",
+            "description": "This is gosho."
+        }
+    ]
+}
