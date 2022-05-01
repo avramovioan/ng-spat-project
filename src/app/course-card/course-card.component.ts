@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Course } from 'src/models/Course';
+import { CourseService } from 'src/services/course.service';
 
 @Component({
   selector: 'app-course-card',
@@ -8,10 +10,19 @@ import { Course } from 'src/models/Course';
 })
 export class CourseCardComponent implements OnInit {
   @Input() course!: Course;
+  @Output() deleteEvent = new EventEmitter<Course>();
 
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
+  }
+
+  deleteCourse(): void{
+    this.courseService.deleteCourse(this.course.id!).subscribe(
+      res => {
+          this.deleteEvent.emit(this.course);
+      }
+    );
   }
 
 }

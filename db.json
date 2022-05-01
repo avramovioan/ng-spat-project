@@ -1,29 +1,19 @@
 {
-    "courses" : [
-        {
-            "id":1,
-            "title": "Gosho",
-            "description": "This is gosho."
-        },
-        {
-            "id":2,
-            "title": "Gosho",
-            "description": "This is gosho."
-        },
-        {
-            "id":2,
-            "title": "Gosho",
-            "description": "This is gosho."
-        },
-        {
-            "id":3,
-            "title": "Gosho",
-            "description": "This is gosho."
-        },
-        {
-            "id":4,
-            "title": "Gosho",
-            "description": "This is gosho."
-        }
-    ]
+  "courses": [
+    {
+      "title": "Gosho",
+      "description": "This is gosho",
+      "id": 1
+    },
+    {
+      "title": "Gosho",
+      "description": "This is gosho 2",
+      "id": 2
+    },
+    {
+      "title": "Ivan",
+      "description": "This is ivan",
+      "id": 3
+    }
+  ]
 }

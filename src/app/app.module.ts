@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseCardComponent } from './course-card/course-card.component';
+import { CourseCreateComponent } from './course-create/course-create.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { CourseCardComponent } from './course-card/course-card.component';
     NavbarComponent,
     MainComponent,
     CourseListComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    CourseCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
