@@ -11,6 +11,7 @@ import { MainComponent } from './main/main.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseCreateComponent } from './course-create/course-create.component';
+import { CourseUpdateComponent } from './course-update/course-update.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CourseCreateComponent } from './course-create/course-create.component';
     MainComponent,
     CourseListComponent,
     CourseCardComponent,
-    CourseCreateComponent
+    CourseCreateComponent,
+    CourseUpdateComponent
   ],
   imports: [
     BrowserModule,

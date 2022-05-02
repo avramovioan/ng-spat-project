@@ -12,7 +12,8 @@ export class CourseCardComponent implements OnInit {
   @Input() course!: Course;
   @Output() deleteEvent = new EventEmitter<Course>();
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, 
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +24,10 @@ export class CourseCardComponent implements OnInit {
           this.deleteEvent.emit(this.course);
       }
     );
+  }
+  onUpdate(): void{
+    this.courseService.setCourseForUpdate(this.course);
+    this.router.navigate(['update']);
   }
 
 }
