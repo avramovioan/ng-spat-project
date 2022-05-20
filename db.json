@@ -11,9 +11,14 @@
       "id": 2
     },
     {
-      "title": "Vancho",
-      "description": "This is vancho",
+      "title": "test",
+      "description": "test",
       "id": 3
+    },
+    {
+      "title": "Programming",
+      "description": "This course is to teach you how to program programs\n",
+      "id": 4
     }
   ]
 }

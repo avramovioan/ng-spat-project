@@ -11,7 +11,7 @@ import { CourseService } from 'src/services/course.service';
 })
 export class CourseListComponent implements OnInit {
   
-  _cour!: Course[];
+  courses!: Course[];
 
   constructor(private courseService: CourseService, 
               private router: Router) {}
@@ -19,7 +19,7 @@ export class CourseListComponent implements OnInit {
   ngOnInit(): void {
     this.courseService.getAllCourses().subscribe(
       res => {
-        this._cour = res;
+        this.courses = res;
 
       }
     )
@@ -28,7 +28,7 @@ export class CourseListComponent implements OnInit {
     this.router.navigate(['create']);
   }
   onDelete(course: Course): void{
-    const index2 =this._cour.findIndex(c=> c.id == course.id);
-    this._cour.splice(index2, 1);
+    const index2 =this.courses.findIndex(c=> c.id == course.id);
+    this.courses.splice(index2, 1);
   }
 }
