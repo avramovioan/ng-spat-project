@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Course } from 'src/models/Course';
 import { CourseService } from 'src/services/course.service';
 
@@ -20,7 +19,6 @@ export class CourseListComponent implements OnInit {
     this.courseService.getAllCourses().subscribe(
       res => {
         this.courses = res;
-
       }
     )
   }

@@ -3,12 +3,9 @@ import { inject, TestBed } from '@angular/core/testing';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { CourseService } from './course.service';
 import { HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { MockCourse } from 'src/models/MockCourse';
 
-export interface MockCourse{
-  id?: number;
-  title: string;
-  description: string;
-}
+
 
 describe('CourseService', () => {
   let couserService: CourseService;
@@ -28,15 +25,11 @@ describe('CourseService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => { 
-
-  });
-
   it('should be created', () => {
     expect(couserService).toBeTruthy();
   });
 
-  it('Should get all courses', () => {
+  it('Should get all courses with GET request', () => {
     couserService.getAllCourses().subscribe( 
       response => {
         expect(response).toEqual(mockCourses);
@@ -51,7 +44,7 @@ describe('CourseService', () => {
     httpTestingController.verify();
   });
 
-  it('Should get resourse by its Id', () => {
+  it('Should get resourse by its Id with GET request', () => {
     let mockCourse = mockCourses.find(mc => mc.id === 1) as MockCourse;
     couserService.getCourseById(1).subscribe( 
       response => {
@@ -67,7 +60,7 @@ describe('CourseService', () => {
     httpTestingController.verify();
   });
 
-  it('Should update resourse', () => {
+  it('Should update resourse with PUT request', () => {
     let mockCourse = mockCourses[0];
     mockCourse.title = "Test Title";
     couserService.updateCourse(mockCourse).subscribe( 
@@ -84,7 +77,7 @@ describe('CourseService', () => {
     httpTestingController.verify();
   });
 
-  it('Should delete course by Id', () => {
+  it('Should delete course by Id with DELETE request', () => {
     let mockCourse = mockCourses[0];
     mockCourse.title = "Test Title";
     couserService.deleteCourse(mockCourse.id!).subscribe( 
@@ -100,7 +93,7 @@ describe('CourseService', () => {
     req.flush(mockCourse);
     httpTestingController.verify();
   });
-  it('Should create course', () => {
+  it('Should create course with a POST request', () => {
     let mockCourse = {
       id: 4,
       title: "Title to create",
