@@ -1,26 +1,25 @@
 <div class="d-flex justify-content-center">
-    <div class="w-50">
-        <h3>Create course</h3>
-        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <label for="title">Course Title:</label>
-              <input type="text" formControlName="title" class="form-control" id="title" placeholder="Title">
-              <div *ngIf="submitted && f.title.errors" class="text-danger">
-                <div *ngIf="f.title.errors.required">Title is required</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="description">Course Description</label>
-              <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
-              <div *ngIf="submitted && f.description.errors" class="text-danger">
-                <div *ngIf="f.description.errors.required">Description is required</div>
-              </div>
-            </div>
-            <div class="mt-2">
-                <button class="btn btn-primary me-2" type="submit" (click)="onSubmit()">Create</button>
-                <button class="btn btn-danger" type="button" (click)="navigateToHome()">Back</button>
-            </div>
-        </form>
-    </div>
+  <div class="w-50">
+    <h3>Create course</h3>
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Course Title:</label>
+        <input type="text" formControlName="title" class="form-control" id="title" placeholder="Title">
+        <div *ngIf="submitted && f.title.errors" class="text-danger">
+          <div *ngIf="f.title.errors.required">Title is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Course Description</label>
+        <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+        <div *ngIf="submitted && f.description.errors" class="text-danger">
+          <div *ngIf="f.description.errors.required">Description is required</div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <button class="btn btn-primary me-2" type="submit" (click)="onSubmit()" id="submitForm">Create</button>
+        <button class="btn btn-danger" type="button" (click)="navigateToHome()" id="backHome">Back</button>
+      </div>
+    </form>
+  </div>
 </div>
-    
