@@ -10,7 +10,7 @@ import { CourseService } from 'src/services/course.service';
 })
 export class CourseCardComponent implements OnInit {
   @Input() course!: Course;
-  @Output() deleteEvent = new EventEmitter<Course>();
+  @Output() public deleteEvent = new EventEmitter<Course>();
 
   constructor(private courseService: CourseService, 
               private router: Router) { }

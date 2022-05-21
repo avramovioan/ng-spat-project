@@ -11,7 +11,6 @@ import { MockCourse } from 'src/models/MockCourse';
 import { BehaviorSubject } from 'rxjs';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { CourseCardComponent } from '../course-card/course-card.component';
-import { CommonModule } from '@angular/common';
 
 describe('CourseListComponent', () => {
     let component : CourseListComponent;
@@ -24,7 +23,7 @@ describe('CourseListComponent', () => {
         { id: 2, title: 'MyCourseTitle2', description: 'MyCourseDescription2' },
         { id: 3, title: 'MyCourseTitle3', description: 'MyCourseDescription3' }
     ];
-   
+    let mockCourses = new BehaviorSubject<MockCourse[]>(courses);
     beforeEach(()=> {
         TestBed.configureTestingModule({
             imports: [
@@ -50,11 +49,15 @@ describe('CourseListComponent', () => {
         router.initialNavigation();
     });
 
+    beforeEach(() => {
+        spyOn(courseService, 'getAllCourses').and.returnValue(mockCourses);
+    })
+
     it('should be created', ()=> {
         expect(component).toBeTruthy();
     });
 
-    it('On Add Course button click it should navigate to "create" ', fakeAsync(() => {
+    it('On Add Course button click should call navigateToCreate ', fakeAsync(() => {
         spyOn(component, 'navigateToCreate');
         let button = fixture.debugElement.nativeElement.querySelector('button');
         button.click();
@@ -62,15 +65,13 @@ describe('CourseListComponent', () => {
         expect(component.navigateToCreate).toHaveBeenCalled();
     }));
     
-    it('On calling navigateToCreate should redirect to create', () => {
+    it('On calling navigateToCreate, it should redirect to create', () => {
         spyOn(router, 'navigate');
         component.navigateToCreate();
         expect(router.navigate).toHaveBeenCalledWith(['create']);
     });
 
     it('On init should get all courses from courseService', fakeAsync(() => {
-        const mockCourses = new BehaviorSubject<MockCourse[]>(courses);
-        spyOn(courseService, 'getAllCourses').and.returnValue(mockCourses);
         fixture.detectChanges(); //awaiting the subscribe function to compolete
         fixture.whenStable().then(() => {
             expect(component.courses).toEqual(mockCourses.value);
@@ -78,13 +79,30 @@ describe('CourseListComponent', () => {
     }));
 
     it('Component should render child component - app-course-card', fakeAsync(() => {
-        const mockCourses = new BehaviorSubject<MockCourse[]>(courses);
-        spyOn(courseService, 'getAllCourses').and.returnValue(mockCourses);
         fixture.detectChanges(); //awaiting the subscribe function to compolete
         fixture.whenRenderingDone().then(() => {
             const counter = fixture.debugElement.query(By.css('app-course-card'));
             expect(counter).toBeTruthy();
         });
     }));
+
+    it('onDelete must be called when child component emits deleteEvent with course in body', ()=>{
+        fixture.detectChanges();
+        const counter = fixture.debugElement.query(By.css('app-course-card'));
+        const passedCourse = courses[0];
+        spyOn(component, 'onDelete');
+        counter.triggerEventHandler('deleteEvent', passedCourse);
+        fixture.detectChanges();
+        expect(component.onDelete).toHaveBeenCalledWith(passedCourse);
+    });
+
+    it('onDelete must remove the passed course from the courses array', () => {
+        fixture.detectChanges();
+        const courseToDelete = courses[0];
+        expect(component.courses).toEqual(courses);
+        component.onDelete(courseToDelete);
+        const index = component.courses.findIndex(c => c.id == courseToDelete.id);
+        expect(index).toEqual(-1); // means not found in array
+    });
     
 });

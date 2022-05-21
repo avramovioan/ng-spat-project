@@ -26,7 +26,7 @@ export class CourseListComponent implements OnInit {
     this.router.navigate(['create']);
   }
   onDelete(course: Course): void{
-    const index2 =this.courses.findIndex(c=> c.id == course.id);
-    this.courses.splice(index2, 1);
+    const index = this.courses.findIndex(c=> c.id == course.id);
+    this.courses.splice(index, 1);
   }
 }
