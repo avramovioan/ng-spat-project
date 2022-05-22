@@ -2,11 +2,6 @@
   "courses": [
     {
       "title": "Gosho",
-      "description": "This is gosho",
-      "id": 1
-    },
-    {
-      "title": "Gosho",
       "description": "This is gosho 2",
       "id": 2
     },
@@ -14,11 +9,6 @@
       "title": "Programming",
       "description": "This course is to teach you how to program programs\n",
       "id": 4
-    },
-    {
-      "title": "test title",
-      "description": "test description",
-      "id": 5
     }
   ]
 }

@@ -59,7 +59,7 @@ describe('CourseListComponent', () => {
 
     it('On Add Course button click should call navigateToCreate ', fakeAsync(() => {
         spyOn(component, 'navigateToCreate');
-        let button = fixture.debugElement.nativeElement.querySelector('button');
+        const button = fixture.debugElement.nativeElement.querySelector('button');
         button.click();
         tick();
         expect(component.navigateToCreate).toHaveBeenCalled();

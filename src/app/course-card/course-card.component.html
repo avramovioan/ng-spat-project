@@ -1,8 +1,8 @@
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">{{course.title}}</h5>
-      <p class="card-text">{{course.description}}</p>
-      <button class="btn btn-outline-success float-start" (click)="onUpdate()">Update</button>
-      <button class="btn btn-outline-danger float-end" (click)="deleteCourse()">Delete</button>
+      <h5 class="card-title" id="cardTitle">{{course.title}}</h5>
+      <p class="card-text" id="cardDescription">{{course.description}}</p>
+      <button class="btn btn-outline-success float-start" (click)="onUpdate()" id="updateButton">Update</button>
+      <button class="btn btn-outline-danger float-end" (click)="deleteCourse()" id="deleteButton">Delete</button>
     </div>
 </div>

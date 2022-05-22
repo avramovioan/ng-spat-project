@@ -11,11 +11,11 @@ export class CourseService {
 
   private url: string = "http://localhost:3000/courses"
 
-  courseUpdate!: Course;
+  courseUpdate: Course | undefined;
 
   constructor(private http: HttpClient) { }
   
-  get getCourseForUpdate() : Course { return this.courseUpdate }
+  get getCourseForUpdate() : Course | undefined { return this.courseUpdate }
   setCourseForUpdate(course: Course) { this.courseUpdate = course; }
 
   getCourseById(id: number): Observable<Course>{

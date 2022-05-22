@@ -13,7 +13,8 @@ export class CourseUpdateComponent implements OnInit {
 
   updateForm!: FormGroup;
   submitted: boolean = false;
-  courseToUpdate!: Course;
+  courseToUpdate: Course | undefined;
+    createForm: any;
   constructor(private router: Router,
               private courseService: CourseService,
               private formBuilder: FormBuilder) { }
@@ -24,8 +25,8 @@ export class CourseUpdateComponent implements OnInit {
       this.router.navigate(['home']);
     }
     this.updateForm = this.formBuilder.group({
-      title: [this.courseToUpdate.title, Validators.required],
-      description: [this.courseToUpdate.description, Validators.required]
+      title: [this.courseToUpdate!.title, Validators.required],
+      description: [this.courseToUpdate!.description, Validators.required]
     });
   }
   navigateToHome(){
@@ -36,9 +37,8 @@ export class CourseUpdateComponent implements OnInit {
 
   onSubmit(): void{
     this.submitted = true;
-    console.log(this.courseToUpdate);
     if(this.updateForm.invalid) return;
-    let course : Course = { title: this.f.title.value , description: this.f.description.value, id:this.courseToUpdate.id }
+    let course : Course = { title: this.f.title.value , description: this.f.description.value, id:this.courseToUpdate!.id }
     this.courseService.updateCourse(course).subscribe(
       res => {
         this.router.navigate(['home']);

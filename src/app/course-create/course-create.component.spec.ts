@@ -66,14 +66,14 @@ describe('CourseCreateComponent', () => {
     
     it('On Back button click, should call navigateToHome()', () => {
         spyOn(component, 'navigateToHome');
-        let button = fixture.debugElement.nativeElement.querySelector('#backHome');
+        const button = fixture.debugElement.nativeElement.querySelector('#backHome');
         button.click();
         expect(component.navigateToHome).toHaveBeenCalled(); 
     });
 
     it('When clicking Submit button, should call onSubmit()', () => {
         spyOn(component, 'onSubmit');
-        let button = fixture.debugElement.nativeElement.querySelector('#submitForm');
+        const button = fixture.debugElement.nativeElement.querySelector('#submitForm');
         button.click();
         expect(component.onSubmit).toHaveBeenCalled(); 
     });
@@ -129,21 +129,23 @@ describe('CourseCreateComponent', () => {
         expect(courseService.createCourse).not.toHaveBeenCalled();
     });
 
-    it('On valid submit courseServoce should be called with the filled title and description', () => {
+    it('On valid submit courseService.createCourse  should be called with the filled title and description', () => {
         const mockCourse = new BehaviorSubject<MockCourse>(courses[0]);
         const title = component.createForm.controls.title;
         const description = component.createForm.controls.description;
         title.setValue(mockCourse.value.title);
         description.setValue(mockCourse.value.description);
         spyOn(courseService, 'createCourse').and.returnValue(mockCourse.asObservable());
-        let button = fixture.debugElement.nativeElement.querySelector('#submitForm');
+        const button = fixture.debugElement.nativeElement.querySelector('#submitForm');
         button.click();
         fixture.detectChanges();
         expect(courseService.createCourse).toHaveBeenCalledOnceWith({title: mockCourse.value.title, description: mockCourse.value.description}); 
     });
 
     it('On valid create should redirect to home page', ()=>{
+        const mockCourse = new BehaviorSubject<MockCourse>(courses[0]);
         spyOn(router, 'navigate');
+        spyOn(courseService, 'createCourse').and.returnValue(mockCourse.asObservable());
         const title = component.createForm.controls.title;
         const description = component.createForm.controls.description;
         title.setValue('test title');
